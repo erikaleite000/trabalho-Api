@@ -26,6 +26,11 @@ public class AlunoController {
 		AlunoDao alunoDao = AlunoDao.getInstance();
 		alunoDao.merge(aluno);;
 	}
+        @GetMapping("/buscar-por-periodo")
+      public List<Aluno> buscarPorPeriodo(@RequestParam String periodo) {
+      return alunoRepository.findByPeriodoEntrada(periodo);
+
+      }
 		private void validarAluno(AlunoModel aluno) {
         if (aluno.getCampus() == null || aluno.getCampus().isBlank()) {
             throw new IllegalArgumentException("O campo 'campus' é obrigatório.");
@@ -50,3 +55,5 @@ public class AlunoController {
         }
     }
 }
+
+
